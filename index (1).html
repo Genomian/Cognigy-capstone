@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Qwik Service | Fast. Friendly. Reliable.</title>
+<meta name="description" content="Book vehicle service and annual safety inspections at Qwik Service. Talk to Quinn, our scheduling assistant, in English or Spanish.">
+<style>
+  :root {
+    --red: #d71920;
+    --red-dark: #a80f15;
+    --ink: #16181d;
+    --ink-2: #3b3f48;
+    --muted: #6b7180;
+    --line: #e4e6ea;
+    --bg: #ffffff;
+    --bg-2: #f5f6f8;
+    --yellow: #ffc61a;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.55; }
+  a { color: var(--red); }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+
+  /* Header */
+  header { position: sticky; top: 0; z-index: 10; background: var(--ink); color: #fff; }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+  .logo { display: flex; align-items: baseline; gap: 6px; font-weight: 900; font-style: italic; letter-spacing: .5px; text-decoration: none; color: #fff; font-size: 24px; }
+  .logo span { color: var(--red); }
+  .logo small { font-style: normal; font-weight: 600; font-size: 11px; letter-spacing: 2px; color: #c9ccd3; }
+  .nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; }
+  .nav ul a { color: #e8e9ec; text-decoration: none; font-size: 14px; font-weight: 600; }
+  .nav ul a:hover { color: #fff; }
+  .nav .cta { background: var(--red); color: #fff; padding: 9px 16px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 14px; white-space: nowrap; }
+
+  /* Hero */
+  .hero { background: linear-gradient(115deg, var(--ink) 0%, #23262e 55%, var(--red-dark) 55.2%, var(--red) 100%); color: #fff; }
+  .hero .wrap { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; padding-top: 64px; padding-bottom: 72px; align-items: center; }
+  .eyebrow { display: inline-block; background: var(--yellow); color: var(--ink); font-weight: 800; font-size: 12px; letter-spacing: 1px; padding: 4px 10px; border-radius: 3px; text-transform: uppercase; }
+  .hero h1 { font-size: 46px; line-height: 1.08; margin: 16px 0 14px; font-weight: 900; text-transform: uppercase; font-style: italic; }
+  .hero p { font-size: 18px; color: #d9dbe0; max-width: 520px; }
+  .hero-card { background: #fff; color: var(--ink); border-radius: 12px; padding: 26px; box-shadow: 0 18px 40px rgba(0,0,0,.25); }
+  .hero-card h2 { margin: 0 0 6px; font-size: 22px; }
+  .hero-card p { color: var(--ink-2); font-size: 15px; margin: 0 0 14px; }
+  .hero-card ul { margin: 0 0 16px; padding-left: 18px; color: var(--ink-2); font-size: 15px; }
+  .hero-card .hint { display: flex; gap: 10px; align-items: center; background: var(--bg-2); border-left: 4px solid var(--red); padding: 10px 12px; border-radius: 6px; font-size: 14px; }
+
+  section { padding: 64px 0; }
+  section.alt { background: var(--bg-2); }
+  .section-title { font-size: 30px; font-weight: 900; text-transform: uppercase; font-style: italic; margin: 0 0 8px; }
+  .section-sub { color: var(--muted); margin: 0 0 32px; max-width: 680px; }
+
+  /* Steps */
+  .steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; counter-reset: s; }
+  .step { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 18px; }
+  .step::before { counter-increment: s; content: counter(s); display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--red); color: #fff; font-weight: 800; margin-bottom: 8px; }
+  .step h3 { margin: 0 0 4px; font-size: 16px; }
+  .step p { margin: 0; font-size: 14px; color: var(--muted); }
+
+  /* Services */
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 22px; }
+  .card h3 { margin: 0 0 10px; font-size: 17px; text-transform: uppercase; letter-spacing: .3px; }
+  .card h3::before { content: ""; display: inline-block; width: 10px; height: 10px; background: var(--red); margin-right: 8px; transform: skewX(-15deg); }
+  .card ul { margin: 0; padding-left: 18px; color: var(--ink-2); font-size: 15px; }
+
+  /* Inspection */
+  .inspect { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
+  .inspect .box { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 22px; }
+  .inspect h3 { margin-top: 0; }
+  .checks { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 18px; padding-left: 18px; margin: 0; color: var(--ink-2); font-size: 15px; }
+  .warn { border-left: 4px solid var(--yellow); }
+
+  /* Manage */
+  .manage { display: grid; grid-template-columns: 1.1fr 1fr; gap: 28px; align-items: center; }
+  .manage .panel { background: var(--ink); color: #fff; border-radius: 12px; padding: 28px; }
+  .manage .panel h3 { margin: 0 0 8px; font-size: 22px; }
+  .manage .panel p { color: #cfd2d8; margin: 0 0 18px; }
+  .btn { display: inline-block; background: var(--red); color: #fff; text-decoration: none; font-weight: 800; padding: 12px 20px; border-radius: 6px; }
+  .btn:hover { background: var(--red-dark); }
+  .pin-demo { display: flex; gap: 6px; margin-top: 16px; }
+  .pin-demo span { width: 34px; height: 40px; border: 2px solid #5a5f6b; border-radius: 6px; display: grid; place-items: center; font-weight: 800; color: #8b909b; }
+
+  /* Locations */
+  .loc { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 18px; }
+  .loc h3 { margin: 0 0 4px; font-size: 16px; }
+  .loc p { margin: 0; font-size: 14px; color: var(--muted); }
+  .badge { display: inline-block; margin-top: 8px; font-size: 12px; font-weight: 700; padding: 3px 8px; border-radius: 3px; background: #e7f5ea; color: #1d6b31; }
+  .badge.no { background: var(--bg-2); color: var(--muted); }
+
+  /* FAQ */
+  details { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 14px 18px; margin-bottom: 10px; }
+  summary { cursor: pointer; font-weight: 700; }
+  details p { margin: 10px 0 0; color: var(--ink-2); }
+
+  footer { background: var(--ink); color: #aeb2bb; padding: 36px 0; font-size: 14px; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  footer strong { color: #fff; }
+
+  @media (max-width: 900px) {
+    .hero .wrap, .inspect, .manage { grid-template-columns: 1fr; }
+    .hero { background: linear-gradient(160deg, var(--ink) 0%, #23262e 60%, var(--red-dark) 100%); }
+    .hero h1 { font-size: 34px; }
+    .steps { grid-template-columns: 1fr 1fr; }
+    .grid-3 { grid-template-columns: 1fr 1fr; }
+    .nav ul { display: none; }
+  }
+  .nav ul a { white-space: nowrap; }
+  @media (max-width: 1100px) { .logo small { display: none; } }
+  @media (max-width: 560px) {
+    .steps, .grid-3, .checks { grid-template-columns: 1fr; }
+    .logo { font-size: 19px; }
+    .nav .cta { padding: 8px 10px; font-size: 12px; }
+    .hero h1 { font-size: 28px; }
+    .pin-demo span { width: 28px; height: 34px; }
+  }
+  .hero .wrap > *, .manage > *, .inspect > * { min-width: 0; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top">QWIK<span>SERVICE</span> <small>FAST. FRIENDLY. RELIABLE.</small></a>
+    <ul>
+      <li><a href="#how">How booking works</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#inspection">Safety inspection</a></li>
+      <li><a href="#locations">Locations</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a class="cta" href="#manage">Manage my appointment</a>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Book in minutes</span>
+        <h1>Service your car on your schedule</h1>
+        <p>Oil changes, brakes, tires, batteries, diagnostics and annual safety inspections at Qwik Service centers near you. Call Quinn, our scheduling assistant, to book, check, reschedule or cancel. English or Spanish.</p>
+      </div>
+      <div class="hero-card">
+        <h2>Talk to Quinn</h2>
+        <p>Click the call button in the bottom-right corner of this page to speak with Quinn through your browser. Have these ready:</p>
+        <ul>
+          <li>Your vehicle's license plate</li>
+          <li>The postal code on your account</li>
+          <li>The phone number on file, if you're calling from a different device</li>
+        </ul>
+        <div class="hint">🎙️ Allow microphone access when your browser asks. <em>Hablamos español.</em></div>
+      </div>
+    </div>
+  </div>
+
+  <section id="how">
+    <div class="wrap">
+      <h2 class="section-title">How booking works</h2>
+      <p class="section-sub">Scheduling ahead reserves a convenient date, time and service center, and you'll get a confirmation and reminders before your visit.</p>
+      <div class="steps">
+        <div class="step"><h3>Choose a center</h3><p>Pick the Qwik Service location that suits you.</p></div>
+        <div class="step"><h3>Enter vehicle details</h3><p>Tell us your vehicle and license plate.</p></div>
+        <div class="step"><h3>Select services</h3><p>Choose from our service menu below.</p></div>
+        <div class="step"><h3>Pick date &amp; time</h3><p>We'll offer the open slots for that day.</p></div>
+        <div class="step"><h3>Confirm</h3><p>Add your contact info and you're booked.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="alt">
+    <div class="wrap">
+      <h2 class="section-title">Service menu</h2>
+      <p class="section-sub">Not sure what your vehicle needs? Book a general inspection or diagnostic visit and talk through the symptoms with a technician.</p>
+      <div class="grid-3">
+        <div class="card"><h3>Repair &amp; diagnostics</h3><ul><li>Diagnostic scan</li><li>Dashboard lights</li><li>Engine tune-up</li><li>A/C &amp; heating</li><li>Shocks &amp; struts</li><li>Exhaust system</li></ul></div>
+        <div class="card"><h3>Oil change services</h3><ul><li>Standard oil change</li><li>Synthetic oil change</li><li>High-mileage oil change</li></ul></div>
+        <div class="card"><h3>Tire services</h3><ul><li>Tire rotation</li><li>Tire balancing</li><li>Flat tire repair</li><li>Tire installation</li><li>Wheel alignment</li></ul></div>
+        <div class="card"><h3>Brake services</h3><ul><li>Brake inspection</li><li>Standard brake service</li><li>Premium brake service</li></ul></div>
+        <div class="card"><h3>Battery &amp; charging</h3><ul><li>Battery check</li><li>Battery replacement</li><li>Charging system evaluation</li></ul></div>
+        <div class="card"><h3>Maintenance basics</h3><ul><li>Filter replacement</li><li>Windshield wipers</li><li>Headlights</li><li>Courtesy vehicle inspection</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="inspection">
+    <div class="wrap">
+      <h2 class="section-title">Annual vehicle safety inspection</h2>
+      <p class="section-sub">Most vehicles in Nexora must pass a safety inspection once every 12 months. Selected Qwik Service centers are certified official inspection stations.</p>
+      <div class="inspect">
+        <div class="box">
+          <h3>What's checked</h3>
+          <ul class="checks">
+            <li>Brakes &amp; parking brake</li><li>Headlights, signals &amp; horn</li>
+            <li>Steering &amp; suspension</li><li>Tires, wheels &amp; rims</li>
+            <li>Mirrors, glass &amp; wipers</li><li>Exhaust, fuel &amp; emissions</li>
+            <li>Seats, belts &amp; airbags</li><li>Doors, hood latch, floor pan &amp; plate light</li>
+          </ul>
+        </div>
+        <div class="box warn">
+          <h3>How it works</h3>
+          <p>A certified inspector removes the old sticker and checks each safety item. If your vehicle passes, a new sticker is issued for your windshield. Driving without a valid sticker may lead to a ticket.</p>
+          <p><strong>If it doesn't pass:</strong> you may receive a rejection notice. Repair the listed defects and return for reinspection within 15 days.</p>
+          <p style="margin-bottom:0;color:var(--muted);font-size:14px;">Safety inspection is separate from vehicle registration. Some localities also require emissions inspections.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="manage" class="alt">
+    <div class="wrap manage">
+      <div>
+        <h2 class="section-title">Manage my appointment</h2>
+        <p class="section-sub" style="margin-bottom:0">During your call, Quinn can send your appointment to your screen so you can review it and choose to keep or cancel it. Open the page below and type the six-letter PIN Quinn reads out to you.</p>
+      </div>
+      <div class="panel">
+        <h3>Have a PIN from Quinn?</h3>
+        <p>Your appointment details open securely in a new tab. Nothing changes until you choose.</p>
+        <a class="btn" href="https://cognigy-static-na1.nicecxone.com/" target="_blank" rel="noopener">Open Manage my appointment</a>
+        <div class="pin-demo" aria-hidden="true"><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="locations">
+    <div class="wrap">
+      <h2 class="section-title">Our service centers</h2>
+      <p class="section-sub">Every center offers maintenance and repairs. Centers marked as certified can perform your annual government safety inspection.</p>
+      <div class="grid-3">
+        <div class="loc"><h3>Berlin Auto Center</h3><p>12 Friedrichstrasse, Berlin</p><span class="badge">✓ Certified inspection station</span></div>
+        <div class="loc"><h3>Munich Service Hub</h3><p>88 Leopoldstrasse, Munich</p><span class="badge no">Maintenance &amp; repairs</span></div>
+        <div class="loc"><h3>San Francisco Auto Center</h3><p>San Francisco, CA</p><span class="badge">✓ Certified inspection station</span></div>
+        <div class="loc"><h3>New York Service Hub</h3><p>New York, NY</p><span class="badge no">Maintenance &amp; repairs</span></div>
+        <div class="loc"><h3>Sydney Auto Center</h3><p>Sydney, NSW</p><span class="badge">✓ Certified inspection station</span></div>
+        <div class="loc"><h3>Melbourne Service Hub</h3><p>Melbourne, VIC</p><span class="badge no">Maintenance &amp; repairs</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="alt">
+    <div class="wrap">
+      <h2 class="section-title">Frequently asked questions</h2>
+      <p class="section-sub">Quinn can answer these on the phone too.</p>
+      <details><summary>What services are included in my booking?</summary><p>The services you selected when booking. A technician may recommend extra work after inspecting your vehicle; some services depend on parts availability. Check your confirmation for final details.</p></details>
+      <details><summary>Can I change my service center location?</summary><p>Yes. You can usually change locations before final confirmation, though you may need to reselect available services or times.</p></details>
+      <details><summary>Will I get a confirmation email or SMS?</summary><p>Yes. A confirmation is typically sent by email, and optional text reminders may be available.</p></details>
+      <details><summary>What time should I arrive for my service?</summary><p>Arrive about 10–15 minutes early so check-in is quick and easy.</p></details>
+      <details><summary>Are loaner vehicles available during service?</summary><p>Loaner availability varies by location and service type. Check with your service center when booking, and ask about shuttle or waiting-area options.</p></details>
+      <details><summary>Can I book if I'm not sure what my vehicle needs?</summary><p>Yes. Choose a general inspection or diagnostic visit and discuss the symptoms with the technician.</p></details>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><strong>Qwik Service</strong><br>Fast. Friendly. Reliable.</div>
+    <div>Bring your keys and contact info.<br>Service times vary by vehicle and repair type.</div>
+    <div>© 2026 Qwik Service (demo site for a NiCE Cognigy capstone project)</div>
+  </div>
+</footer>
+
+<!-- Cognigy Click To Call widget (Voice Gateway endpoint "Quinn Voice") -->
+<script src="https://github.com/Cognigy/click-to-call-widget/releases/latest/download/webRTCWidget.js"></script>
+<script>
+  addEventListener("load", (event) => { if (window.initWebRTCWidget) { window.initWebRTCWidget("https://cognigy-endpoint-na1.nicecxone.com/2895f59e051b5a058795f9796f3335183194e410b38ca1558de9f6c54c138f3e"); } });
+</script>
+</body>
+</html>
